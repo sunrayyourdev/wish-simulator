@@ -1,2 +1,3 @@
-# wish-simulator
+    # wish-simulator
 Genshin Wishing Clone
+- hahahaaha
