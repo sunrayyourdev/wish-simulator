@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #000000;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 1.4rem;
+    margin: 10px auto;
+    width: fit-content;
+}
+
+input[type='text'] {
+    margin-top: 5px;
+    font-size: 1rem;
+    padding: 3px 10px;
+}
+
+select {
+    font-size: 1rem;
+}
+
+.form-group, .main-content {
+    margin: 15px auto 15px auto;
+    width: fit-content;
+}
+
+.main-content {
+    width: fit-content;
+    padding: 10px;
+}
+
+a:visited {
+    color: blue;
+}
+
+.four-star {
+    color: violet;
+}
+
+.five-star {
+    color: gold;
+}
