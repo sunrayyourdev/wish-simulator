@@ -1,7 +1,7 @@
 from Banners import StandardBanner, VentiBanner
 
 
-class User():
+class User:
     def __init__(self) -> None:
         self.banners = {'standard': StandardBanner(), 'venti': VentiBanner()}
         self.last_wish_result = []

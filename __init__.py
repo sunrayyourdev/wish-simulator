@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from User import User
 
 
-
 app = Flask(__name__)
 app.secret_key = 'C1ZPbB0tapxqNpeYou7EpmRJN4hBT7li'
 
