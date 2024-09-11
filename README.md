@@ -1,2 +1,3 @@
-Genshin Wishing Clone
-- hahahaaha
+# Genshin Wishing Clone
+
+- lol
