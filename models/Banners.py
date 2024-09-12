@@ -1,5 +1,5 @@
 import random
-from Items import *
+from models.Items import *
 
 
 class Banner:

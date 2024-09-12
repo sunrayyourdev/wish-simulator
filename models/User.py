@@ -1,4 +1,4 @@
-from Banners import StandardBanner, VentiBanner
+from models.Banners import StandardBanner, VentiBanner
 
 
 class User:

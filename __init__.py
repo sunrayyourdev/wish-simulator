@@ -1,10 +1,13 @@
 import shelve
 from flask import Flask, render_template, request, redirect, url_for, session
-from User import User
+from models.User import User
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'C1ZPbB0tapxqNpeYou7EpmRJN4hBT7li'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
 def manage_session():
