@@ -21,7 +21,7 @@ Wish Simulator is a web application that mimicks the wishing system from the pop
 ## Features
 
 - Wish from different banners
-  - Rates and pity system work like the game
+  - Rates and pity system work like in the game
   - Available: Venti, Standard
 - View their wish history
 
@@ -59,8 +59,9 @@ To install and run the Wish Simulator locally, follow these steps:
 ## Usage
 
 1. Open your web browser and go to `http://127.0.0.1:5000`.
-2. Select a banner and start wishing.
-3. View your wish history and results.
+2. If there is `KeyError`, go to `http://127.0.0.1:5000/restart-database`
+3. Select a banner and start wishing.
+4. View your wish history and results.
 
 ## Stack
 
