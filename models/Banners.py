@@ -27,6 +27,7 @@ class StandardBanner(Banner):
     def __init__(self) -> None:
         super().__init__()
 
+    # Main wishing logic
     def roll(self):
         if self.five_star_pity == 0:
             self.five_star_pity = 89

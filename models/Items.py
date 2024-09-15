@@ -5,7 +5,9 @@ class Item:
     def __init__(self, name) -> None:
         self.name = name
         self.rarity = 0
-        self.date = datetime.date.today()
+
+    def __str__(self):
+        return self.name
 
 
 class FiveStar(Item):

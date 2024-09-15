@@ -48,8 +48,11 @@ def home():
 
 @app.route('/history', methods=['GET', 'POST'])
 def history():
-    # add this feature
-    return render_template('history.html')
+    manage_session()
+    if request.method == 'POST':
+        return redirect(url_for('history'))
+    wish_history = get_current_user().banners[session['banner']].history
+    return render_template('history.html', banner=session['banner'], wish_history=[(len(wish_history)-n, i) for n, i in enumerate(wish_history)])
 
 
 @app.route('/restart-database', methods=['GET', 'POST'])

@@ -4,6 +4,7 @@
 <div class="main-title">
     <span>Wish Simulator</span>
 </div>
+<a href="/history">History</a>
 <div class="main-content">
     <form action="" method="POST">
         <div class="form-group">
@@ -31,11 +32,11 @@
     <div>
         {% for item in wish_result %}
             {% if item.rarity == 5 %}        
-                <span class="five-star">{{ item.name }}</span><br>
+                <span class="five-star">{{ item }}</span><br>
             {% elif item.rarity == 4 %}
-                <span class="four-star">{{ item.name }}</span><br>
+                <span class="four-star">{{ item }}</span><br>
             {% else %} 
-                <span>{{ item.name }}</span><br>
+                <span>{{ item }}</span><br>
             {% endif %}   
         {% endfor %}
     </div>
