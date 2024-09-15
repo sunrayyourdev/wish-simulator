@@ -21,7 +21,7 @@ Wish Simulator is a web application that mimicks the wishing system from the pop
 ## Features
 
 - Wish from different banners
-  - Rates and pity system work like the game
+  - Rates and pity system work like in the game
   - Available: Venti, Standard
 - View their wish history
 
