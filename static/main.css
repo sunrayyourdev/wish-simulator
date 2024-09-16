@@ -6,6 +6,9 @@ body {
     color: white;
     background-color: #000000;
     text-align: center;
+    background-image: url('images/genshin-impact-scenery.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .main-title {
