@@ -67,6 +67,7 @@ To install and run the Wish Simulator locally, follow these steps:
 
 - Python
 - Flask
+- Shelve (Persistent Storage)
 - HTML/CSS
 
 ## Contributing
