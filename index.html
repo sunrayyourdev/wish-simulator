@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WishSim</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>WishSim</title> 
 </head>
 <body>
-    WishSim
+    <div class="background-overlay"></div>
+    <div class="main-content">
+        <div class="settings-icon">
+            <i class="fas fa-cog"></i>
+        </div>
+        <div class="container">
+            <span class="page-title">WishSim</span>
+            <div class="button-container">
+                <button id="venti-button">Venti</button>
+                <button id="standard-button">Standard</button>
+            </div>
+            <span id="message"></span>
+        </div>
+        <div id="settings-popup" class="popup">
+            <span class="page-subtitle">Settings</span>
+            <div class="input-container">
+                <label for="background-select">Background:</label>
+                <select id="background-select">
+                    <option value="default">Default</option>
+                    <option value="mondstadt">Mondstadt</option>
+                    <option value="liyue">Liyue</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
