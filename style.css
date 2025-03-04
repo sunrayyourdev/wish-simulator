@@ -31,10 +31,43 @@ body {
     font-size: 1.8em;
 }
 
-.button-container {
+.banners {
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+
+.banners button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #555;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.banners #venti-button:hover {
+    background-color: rgb(134, 192, 134);
+}
+
+.banners #standard-button:hover {
+    background-color: #777;
+}
+
+.banners #venti-button[aria-pressed="true"] {
+    outline: 2px solid #fff;
+    outline-offset: -1px;
+}
+
+.banners #standard-button[aria-pressed="true"] {
+    outline: 2px solid #fff;
+    outline-offset: -1px;
+}
+
+.banners #venti-button {
+    background-color: rgb(113, 183, 113);
 }
 
 .settings-icon {
@@ -71,4 +104,20 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    font-size: 1em;
+}
+
+.input-container select {
+    font-size: 1em;
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #555;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.input-container select:hover {
+    background-color: #777;
 }

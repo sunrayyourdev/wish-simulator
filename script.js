@@ -1,9 +1,15 @@
 document.getElementById('venti-button').addEventListener('click', function() {
     document.getElementById('message').textContent = "You are now on Venti's banner";
+    // Set aria-pressed for Venti and Standard buttons
+    document.getElementById('venti-button').setAttribute('aria-pressed', 'true');
+    document.getElementById('standard-button').setAttribute('aria-pressed', 'false');
 });
 
 document.getElementById('standard-button').addEventListener('click', function() {
     document.getElementById('message').textContent = "You are now on Standard banner";
+    // Set aria-pressed for Standard and Venti buttons
+    document.getElementById('standard-button').setAttribute('aria-pressed', 'true');
+    document.getElementById('venti-button').setAttribute('aria-pressed', 'false');
 });
 
 document.querySelector('.settings-icon').addEventListener('click', function() {
@@ -30,8 +36,17 @@ document.getElementById('background-select').addEventListener('change', function
 });
 
 document.getElementById('save-custom-url').addEventListener('click', function() {
-    const url = document.getElementById('custom-url-input').value;
-    if (url) {
-        document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('" + url + "')";
+    const urlInput = document.getElementById('custom-url-input');
+    const url = urlInput.value.trim();
+    // Validate non-empty and format
+    const urlPattern = /^https?:\/\/.+/;
+    if (!url) {
+        alert('Please enter an image URL.');
+        return;
     }
+    if (!urlPattern.test(url)) {
+        alert('Invalid URL. Enter a valid image URL starting with http:// or https://');
+        return;
+    }
+    document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('" + url + "')";
 });
