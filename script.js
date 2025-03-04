@@ -68,6 +68,20 @@ document.getElementById('save-custom-url').addEventListener('click', function() 
 
 let characters = [];
 let weapons = [];
+let standard = {
+    fiveStars: [],
+    fourStars: []
+}
+let venti = {
+    featured: {
+        fiveStar: null,
+        fourStars: []
+    },
+    regular: {
+        fiveStars: [],
+        fourStars: []
+    }
+}
 
 window.addEventListener('load', function() {
     fetch('https://genshinlist.com/api/characters')
@@ -88,4 +102,28 @@ window.addEventListener('load', function() {
         .catch(error => {
             console.error('Error fetching character data:', error);
         });
+
+    // TODO: Add items to banners
+    // standard = characters.filter((c) => {
+    //     return !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name);
+    // }).concat(weapons);
+});
+
+document.getElementById('wish-button').addEventListener('click', function() {
+    // OK BUT WHY IS A BOOL STORED AS A STRING WTF JAVASCRIPT rant over
+    let list = [];
+    if (document.getElementById('standard-button').ariaPressed === 'true') {
+        // let num = 0;
+        // for (let i = 0; i < 10; i++) {
+        //     num = Math.floor(Math.random() * 1000);
+        //     if (num < 6) {
+        //         list.push(characters.filter((character) => {
+        //             return character.rarity === '5' && character.name
+        //         }));
+        //     }
+        // }
+        document.getElementById('message').textContent = 'standard';
+    } else {
+        document.getElementById('message').textContent = 'venti';
+    }
 });
