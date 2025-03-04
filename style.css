@@ -51,7 +51,7 @@ button {
 }
 
 .banners #venti-button:hover {
-    background-color: rgb(153, 219, 153);
+    background-color: rgb(126, 189, 126);
 }
 
 .banners #standard-button:hover {
@@ -61,15 +61,17 @@ button {
 .banners #venti-button[aria-pressed="true"] {
     outline: 2px solid #fff;
     outline-offset: -1px;
+    background-color: rgb(126, 189, 126);
 }
 
 .banners #standard-button[aria-pressed="true"] {
     outline: 2px solid #fff;
     outline-offset: -1px;
+    background-color: #777;
 }
 
 .banners #venti-button {
-    background-color: rgb(113, 183, 113);
+    background-color: #5d975d;
 }
 
 .settings-icon {
@@ -133,18 +135,52 @@ button {
     background-color: #777;
 }
 
-#wish-button {
-    background: linear-gradient(to right, rgb(244, 166, 178), rgb(94, 164, 230));
+@property --wishColor1 {
+    syntax: '<color>';
+    initial-value: rgb(255, 176, 230);
+    inherits: false;
+}
 
+@property --wishColor2 {
+    syntax: '<color>';
+    initial-value: rgb(89, 153, 221);
+    inherits: false;
+}
+
+@property --wishTextColor {
+    syntax: '<color>';
+    initial-value: white;
+    inherits: false;
+}
+
+#wish-button {
+    --wishColor1: rgb(255, 176, 230);
+    --wishColor2: rgb(89, 153, 221);
+    --wishTextColor: white;
+    background: linear-gradient(to right, var(--wishColor1), var(--wishColor2));
     width: 100%;
-    color: white;
+    color: var(--wishTextColor);
     border: none;
     padding: 10px;
     font-size: 1.2em;
     cursor: pointer;
     text-align: center;
+    transition: --wishColor1 0.5s, --wishColor2 0.5s, --wishTextColor 0.5s;
 }
 
 #wish-button:hover {
-    background: linear-gradient(to right, pink, rgb(113, 181, 244));
+    --wishColor1: rgb(254, 200, 237);
+    --wishColor2: rgb(100, 167, 239);
+}
+
+#wish-button:disabled {
+    --wishColor1: rgb(83, 83, 83);
+    --wishColor2: rgb(83, 83, 83);
+    --wishTextColor: rgb(137, 137, 137);
+    cursor: default;
+}
+
+#wish-button.standard-selected {
+    --wishColor1: #6a82ab;
+    --wishColor2: #2f589a;
 }

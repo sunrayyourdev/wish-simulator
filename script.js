@@ -1,12 +1,19 @@
 document.getElementById('venti-button').addEventListener('click', function() {
     document.getElementById('venti-button').setAttribute('aria-pressed', 'true');
     document.getElementById('standard-button').setAttribute('aria-pressed', 'false');
+    document.getElementById('wish-button').disabled = false;
+    document.getElementById('wish-button').classList.remove('standard-selected');
 });
 
 document.getElementById('standard-button').addEventListener('click', function() {
     document.getElementById('standard-button').setAttribute('aria-pressed', 'true');
     document.getElementById('venti-button').setAttribute('aria-pressed', 'false');
+    document.getElementById('wish-button').disabled = false;
+    document.getElementById('wish-button').classList.add('standard-selected');
 });
+
+// Disable the wish button initially
+document.getElementById('wish-button').disabled = true;
 
 document.querySelector('.settings-icon').addEventListener('click', function(event) {
     event.stopPropagation(); // Prevent the click event from propagating to the window
@@ -20,7 +27,7 @@ document.querySelector('.popup .close-button').addEventListener('click', functio
 
 window.addEventListener('click', function(event) {
     const popup = document.getElementById('settings-popup');
-    if (event.target !== popup) {
+    if (!popup.contains(event.target)) {
         popup.style.display = 'none';
     }
 });
