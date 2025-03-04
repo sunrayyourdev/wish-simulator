@@ -14,30 +14,35 @@
         <div class="settings-icon">
             <i class="fas fa-cog"></i>
         </div>
-        <div class="container">
+        <div class="config">
             <span class="page-title">WishSim</span>
             <div class="banners">
                 <button id="venti-button">Venti</button>
                 <button id="standard-button">Standard</button>
             </div>
+            <button id="wish-button">WISH</button>
+        </div>
+        <div class="output">
             <span id="message"></span>
         </div>
-        <div id="settings-popup" class="popup">
-            <span class="page-subtitle">Settings</span>
-            <div class="input-container">
-                <label for="background-select">Background:</label>
-                <select id="background-select">
-                    <option value="default">Default</option>
-                    <option value="mondstadt">Mondstadt</option>
-                    <option value="liyue">Liyue</option>
-                    <option value="custom">Custom</option>
-                </select>
-            </div>
-            <!-- New custom URL input container -->
-            <div id="custom-url-container" class="input-container" style="display: none;">
-                <input type="text" id="custom-url-input" placeholder="Enter image URL">
-                <button id="save-custom-url">Save</button>
-            </div>
+    </div>
+    
+    <div id="settings-popup" class="popup">
+        <span class="close-button">&times;</span>
+        <span class="page-subtitle">Settings</span>
+        <div class="input-container">
+            <label for="background-select">Background:</label>
+            <select id="background-select">
+                <option value="default">Default</option>
+                <option value="mondstadt">Mondstadt</option>
+                <option value="liyue">Liyue</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
+        <!-- New custom URL input container -->
+        <div id="custom-url-container" class="input-container" style="display: none;">
+            <input type="text" id="custom-url-input" placeholder="Enter image URL">
+            <button id="save-custom-url">Save</button>
         </div>
     </div>
     <script src="script.js"></script>

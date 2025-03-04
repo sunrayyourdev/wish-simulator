@@ -1,20 +1,28 @@
 document.getElementById('venti-button').addEventListener('click', function() {
-    document.getElementById('message').textContent = "You are now on Venti's banner";
-    // Set aria-pressed for Venti and Standard buttons
     document.getElementById('venti-button').setAttribute('aria-pressed', 'true');
     document.getElementById('standard-button').setAttribute('aria-pressed', 'false');
 });
 
 document.getElementById('standard-button').addEventListener('click', function() {
-    document.getElementById('message').textContent = "You are now on Standard banner";
-    // Set aria-pressed for Standard and Venti buttons
     document.getElementById('standard-button').setAttribute('aria-pressed', 'true');
     document.getElementById('venti-button').setAttribute('aria-pressed', 'false');
 });
 
-document.querySelector('.settings-icon').addEventListener('click', function() {
+document.querySelector('.settings-icon').addEventListener('click', function(event) {
+    event.stopPropagation(); // Prevent the click event from propagating to the window
     const popup = document.getElementById('settings-popup');
     popup.style.display = popup.style.display === 'none' || popup.style.display === '' ? 'flex' : 'none';
+});
+
+document.querySelector('.popup .close-button').addEventListener('click', function() {
+    document.getElementById('settings-popup').style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    const popup = document.getElementById('settings-popup');
+    if (event.target !== popup) {
+        popup.style.display = 'none';
+    }
 });
 
 document.getElementById('background-select').addEventListener('change', function() {
@@ -49,4 +57,28 @@ document.getElementById('save-custom-url').addEventListener('click', function() 
         return;
     }
     document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('" + url + "')";
+});
+
+let characters = [];
+let weapons = [];
+
+window.addEventListener('load', function() {
+    fetch('https://genshinlist.com/api/characters')
+        .then(response => response.json())
+        .then(data => {
+            characters = data;
+            console.log('Character data:', characters);
+        })
+        .catch(error => {
+            console.error('Error fetching character data:', error);
+        });
+    fetch('https://genshinlist.com/api/weapons')
+        .then(response => response.json())
+        .then(data => {
+            weapons = data;
+            console.log('Weapons data:', weapons);
+        })
+        .catch(error => {
+            console.error('Error fetching character data:', error);
+        });
 });
