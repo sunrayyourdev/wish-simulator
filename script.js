@@ -141,18 +141,31 @@ window.addEventListener('load', function() {
 
 document.getElementById('wish-button').addEventListener('click', function() {
     // OK BUT WHY IS A BOOL STORED AS A STRING WTF JAVASCRIPT rant over
-    let list = [];
-    if (document.getElementById('standard-button').ariaPressed == true) {
-        // let num = 0;
-        // for (let i = 0; i < 10; i++) {
-        //     num = Math.floor(Math.random() * 1000);
-        //     if (num < 6) {
-        //         list.push(characters.filter((character) => {
-        //             return character.rarity === '5' && character.name
-        //         }));
-        //     }
-        // }
-        document.getElementById('message').textContent = 'standard';
+    let result = [];
+    if (document.getElementById('standard-button').ariaPressed == 'true') {
+        let num = 0;
+        for (let i = 0; i < 10; i++) {
+            num = Math.random();
+            if (num < 0.006) {
+                result.push(banners.standard.fiveStars[Math.floor(Math.random() * (banners.standard.fiveStars.length-1))]);
+            } else if (num < 0.051) {
+                result.push(banners.standard.fourStars[Math.floor(Math.random() * (banners.standard.fourStars.length-1))]);
+            } else {
+                result.push(banners.standard.threeStars[Math.floor(Math.random() * (banners.standard.threeStars.length-1))]);
+            }
+        }
+        console.log(result)
+        document.getElementById('message').innerHTML = result.map(item => {
+            let color;
+            if (item.rarity == 3) {
+            color = 'lightblue';
+            } else if (item.rarity == 4) {
+            color = 'purple';
+            } else if (item.rarity == 5) {
+            color = 'yellow';
+            }
+            return `<span style="color: ${color};">${item.name}</span>`;
+        }).join(', ');
     } else {
         document.getElementById('message').textContent = 'venti';
     }
