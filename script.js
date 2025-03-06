@@ -147,26 +147,26 @@ document.getElementById('wish-button').addEventListener('click', function() {
         for (let i = 0; i < 10; i++) {
             num = Math.random();
             if (num < 0.006) {
-                result.push(banners.standard.fiveStars[Math.floor(Math.random() * (banners.standard.fiveStars.length-1))]);
+                result.push(banners.standard.fiveStars[Math.floor(Math.random() * (banners.standard.fiveStars.length - 1))]);
             } else if (num < 0.051) {
-                result.push(banners.standard.fourStars[Math.floor(Math.random() * (banners.standard.fourStars.length-1))]);
+                result.push(banners.standard.fourStars[Math.floor(Math.random() * (banners.standard.fourStars.length - 1))]);
             } else {
-                result.push(banners.standard.threeStars[Math.floor(Math.random() * (banners.standard.threeStars.length-1))]);
+                result.push(banners.standard.threeStars[Math.floor(Math.random() * (banners.standard.threeStars.length - 1))]);
             }
         }
         console.log(result)
-        document.getElementById('message').innerHTML = result.map(item => {
-            let color;
+        document.querySelector('.output').innerHTML = result.map(item => {
+            let className = '';
             if (item.rarity == 3) {
-            color = 'lightblue';
+                className = 'rarity-3';
             } else if (item.rarity == 4) {
-            color = 'purple';
+                className = 'rarity-4';
             } else if (item.rarity == 5) {
-            color = 'yellow';
+                className = 'rarity-5';
             }
-            return `<span style="color: ${color};">${item.name}</span>`;
-        }).join(', ');
+            return `<span class="${className}">${item.name}</span>`;
+        }).join('');
     } else {
-        document.getElementById('message').textContent = 'venti';
+        document.querySelector('.output').textContent = 'venti';
     }
 });

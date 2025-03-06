@@ -36,13 +36,13 @@ body {
 .banners {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 button {
     font-size: 1.2em;
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.625rem;
     border: none;
     cursor: pointer;
     background-color: #555;
@@ -93,10 +93,10 @@ button {
     transform: translate(-50%, -50%);
     background-color: #333;
     color: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 1.25rem;
+    border-radius: 0.625rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    border: 2px solid white;
+    border: 0.125rem solid white;
     text-align: center;
     gap: 20px;
     height: auto;
@@ -105,8 +105,8 @@ button {
 
 .popup .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0.625rem;
+    right: 0.625rem;
     font-size: 1.5em;
     cursor: pointer;
     color: white;
@@ -122,7 +122,7 @@ button {
 
 .input-container select {
     font-size: 1em;
-    padding: 10px 10px;
+    padding: 0.625rem;
     border-radius: 10px;
     border: none;
     cursor: pointer;
@@ -161,7 +161,7 @@ button {
     width: 100%;
     color: var(--wishTextColor);
     border: none;
-    padding: 10px;
+    padding: 0.625rem;
     font-size: 1.2em;
     cursor: pointer;
     text-align: center;
@@ -183,4 +183,52 @@ button {
 #wish-button.standard-selected {
     --wishColor1: #829ecf;
     --wishColor2: #2f589a;
+}
+
+.output {
+    margin-top: 2rem;
+    max-width: 25rem;
+    width: 20rem; /* changed from 100% to auto */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: 0.125rem solid white;
+    height: 15rem;
+    border-radius: 0.625rem;
+    background-color: #2a2a2a;
+    padding: 1rem;
+}
+
+.output:empty::before {
+    content: "output here...";
+    display: block;
+    height: auto;
+    font-style: italic;
+    color: rgb(151, 151, 151); /* adjust as needed */
+}
+
+.output span {
+    display: inline-block;
+    padding: 0.3125rem 0.5rem;
+    margin: 0.125rem 0.1875rem;
+    border-radius: 0.25rem;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rarity-3 {
+    color: lightblue;
+}
+
+.rarity-4 {
+    color: violet;
+}
+
+.rarity-5 {
+    color: yellow;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
