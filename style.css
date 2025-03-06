@@ -29,6 +29,10 @@ body {
     font-size: 2em;
 }
 
+.page-title sup {
+    font-size: 0.5em; /* reduces sup size to 50% of parent */
+}
+
 .page-subtitle {
     font-size: 1.8em;
 }
@@ -80,6 +84,16 @@ button {
     left: 10px;
     font-size: 1.5em;
     cursor: pointer;
+}
+
+/* New styling for the about icon */
+.about-icon {
+    position: absolute;
+    top: 10px;
+    left: 3rem; /* positioned next to settings icon */
+    font-size: 1.5em;
+    cursor: pointer;
+    color: white;
 }
 
 .popup {

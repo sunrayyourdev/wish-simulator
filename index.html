@@ -14,8 +14,12 @@
         <div class="settings-icon">
             <i class="fas fa-cog"></i>
         </div>
+        <!-- Added about icon next to settings icon -->
+        <div class="about-icon">
+            <i class="fas fa-info-circle"></i>
+        </div>
         <div class="config">
-            <span class="page-title">WishSim</span>
+            <span class="page-title">WishSim<sup>v4</sup></span>
             <div class="banners">
                 <button id="venti-button">Venti</button>
                 <button id="standard-button">Standard</button>
@@ -37,11 +41,16 @@
                 <option value="custom">Custom</option>
             </select>
         </div>
-        <!-- New custom URL input container -->
         <div id="custom-url-container" class="input-container" style="display: none;">
             <input type="text" id="custom-url-input" placeholder="Enter image URL">
             <button id="save-custom-url">Save</button>
         </div>
+    </div>
+    
+    <div id="about-popup" class="popup" style="display: none;">
+        <span class="close-button">&times;</span>
+        <h2>About This Project</h2>
+        <p>Yes this is the FOURTH time I've built this project. Each time I've learnt something new, which is probably normal and good :D <br/><br/>Anyway, here's the <a href="https://github.com/sunrayyourdev/wish-simulator" target="_blank">repo</a>. Ingat!</p>
     </div>
     <script src="script.js"></script>
 </body>

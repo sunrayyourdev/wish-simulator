@@ -25,6 +25,16 @@ document.querySelector('.popup .close-button').addEventListener('click', functio
     document.getElementById('settings-popup').style.display = 'none';
 });
 
+document.querySelector('.about-icon').addEventListener('click', function(event) {
+    event.stopPropagation();
+    const aboutPopup = document.getElementById('about-popup');
+    aboutPopup.style.display = aboutPopup.style.display === 'none' || aboutPopup.style.display === '' ? 'flex' : 'none';
+});
+
+document.querySelector('#about-popup .close-button').addEventListener('click', function() {
+    document.getElementById('about-popup').style.display = 'none';
+});
+
 window.addEventListener('click', function(event) {
     const popup = document.getElementById('settings-popup');
     if (!popup.contains(event.target)) {
