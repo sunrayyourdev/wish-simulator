@@ -26,15 +26,15 @@ body {
 }
 
 .page-title {
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 .page-title sup {
-    font-size: 0.5em; /* reduces sup size to 50% of parent */
+    font-size: 1rem;
 }
 
 .page-subtitle {
-    font-size: 1.8em;
+    font-size: 1.8rem;
 }
 
 .banners {
@@ -79,21 +79,14 @@ button {
 }
 
 .settings-icon {
-    position: absolute;
-    top: 10px;
-    left: 10px;
     font-size: 1.5em;
     cursor: pointer;
 }
 
 /* New styling for the about icon */
 .about-icon {
-    position: absolute;
-    top: 10px;
-    left: 3rem; /* positioned next to settings icon */
-    font-size: 1.5em;
     cursor: pointer;
-    color: white;
+    font-size: 1.5em;
 }
 
 .popup {
@@ -245,4 +238,14 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.icon-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 1000;
 }
