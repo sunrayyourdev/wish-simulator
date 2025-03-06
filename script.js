@@ -68,18 +68,22 @@ document.getElementById('save-custom-url').addEventListener('click', function() 
 
 let characters = [];
 let weapons = [];
-let standard = {
-    fiveStars: [],
-    fourStars: []
-}
-let venti = {
-    featured: {
-        fiveStar: null,
-        fourStars: []
-    },
-    regular: {
+let banners = {
+    standard: {
         fiveStars: [],
-        fourStars: []
+        fourStars: [],
+        threeStars: []
+    },
+    venti: {
+        featured: {
+            fiveStar: null,
+            fourStars: []
+        },
+        regular: {
+            fiveStars: [],
+            fourStars: [],
+            threeStars: []
+        }
     }
 }
 
@@ -89,30 +93,56 @@ window.addEventListener('load', function() {
         .then(data => {
             characters = data;
             console.log('Character data:', characters);
+            fetch('https://genshinlist.com/api/weapons')
+                .then(response => response.json())
+                .then(data => {
+                    weapons = data;
+                    console.log('Weapons data:', weapons);
+                    banners.standard.fiveStars = characters.filter((c) => {
+                            return c.rarity == 5 && !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name);
+                        }).concat(weapons.filter((c) => {
+                            return c.rarity == 5;
+                        }));
+                    banners.standard.fourStars = characters.filter((c) => {
+                            return c.rarity == 4;
+                        }).concat(weapons.filter((c) => {
+                            return c.rarity == 4;
+                        }));
+                    banners.standard.threeStars = weapons.filter((c) => {
+                            return c.rarity == 3;
+                        });
+                    banners.venti.featured.fiveStar = characters.filter((c) => {
+                            return c.name == 'Venti';
+                        });
+                    banners.venti.featured.fourStars = characters.filter((c) => {
+                            return c.rarity == 4 && ['Fischl', 'Sucrose', 'Xiangling'].includes(c.name);
+                        });
+                    banners.venti.regular.fiveStars = characters.filter((c) => {
+                            return c.rarity == 5 && !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name);
+                        });
+                    banners.venti.regular.fourStars = characters.filter((c) => {
+                            return c.rarity == 4 && !['Kaeya', 'Lisa', 'Amber', 'Fischl', 'Sucrose', 'Xiangling'].includes(c.name);
+                        }).concat(weapons.filter((c) => {
+                            return c.rarity == 4;
+                        }));
+                    banners.venti.regular.threeStars = weapons.filter((c) => {
+                            return c.rarity == 3;
+                        });
+                    console.log(banners)
+                })
+                .catch(error => {
+                    console.error('Error fetching character data:', error);
+                });
         })
         .catch(error => {
             console.error('Error fetching character data:', error);
         });
-    fetch('https://genshinlist.com/api/weapons')
-        .then(response => response.json())
-        .then(data => {
-            weapons = data;
-            console.log('Weapons data:', weapons);
-        })
-        .catch(error => {
-            console.error('Error fetching character data:', error);
-        });
-
-    // TODO: Add items to banners
-    // standard = characters.filter((c) => {
-    //     return !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name);
-    // }).concat(weapons);
 });
 
 document.getElementById('wish-button').addEventListener('click', function() {
     // OK BUT WHY IS A BOOL STORED AS A STRING WTF JAVASCRIPT rant over
     let list = [];
-    if (document.getElementById('standard-button').ariaPressed === 'true') {
+    if (document.getElementById('standard-button').ariaPressed == true) {
         // let num = 0;
         // for (let i = 0; i < 10; i++) {
         //     num = Math.floor(Math.random() * 1000);
