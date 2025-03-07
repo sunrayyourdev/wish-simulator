@@ -17,8 +17,10 @@ document.getElementById('wish-button').disabled = true;
 
 document.querySelector('.settings-icon').addEventListener('click', function(event) {
     event.stopPropagation(); // Prevent the click event from propagating to the window
-    const popup = document.getElementById('settings-popup');
-    popup.style.display = popup.style.display === 'none' || popup.style.display === '' ? 'flex' : 'none';
+    const settingsPopup = document.getElementById('settings-popup');
+    const aboutPopup = document.getElementById('about-popup');
+    settingsPopup.style.display = settingsPopup.style.display === 'none' || settingsPopup.style.display === '' ? 'flex' : 'none';
+    aboutPopup.style.display = 'none';
 });
 
 document.querySelector('.popup .close-button').addEventListener('click', function() {
@@ -28,7 +30,9 @@ document.querySelector('.popup .close-button').addEventListener('click', functio
 document.querySelector('.about-icon').addEventListener('click', function(event) {
     event.stopPropagation();
     const aboutPopup = document.getElementById('about-popup');
+    const settingsPopup = document.getElementById('settings-popup');
     aboutPopup.style.display = aboutPopup.style.display === 'none' || aboutPopup.style.display === '' ? 'flex' : 'none';
+    settingsPopup.style.display = 'none';
 });
 
 document.querySelector('#about-popup .close-button').addEventListener('click', function() {
@@ -36,9 +40,13 @@ document.querySelector('#about-popup .close-button').addEventListener('click', f
 });
 
 window.addEventListener('click', function(event) {
-    const popup = document.getElementById('settings-popup');
-    if (!popup.contains(event.target)) {
-        popup.style.display = 'none';
+    const settingsPopup = document.getElementById('settings-popup');
+    if (!settingsPopup.contains(event.target)) {
+        settingsPopup.style.display = 'none';
+    }
+    const aboutPopup = document.getElementById('about-popup');
+    if (!aboutPopup.contains(event.target)) {
+        aboutPopup.style.display = 'none';
     }
 });
 
