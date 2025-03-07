@@ -185,6 +185,39 @@ document.getElementById('wish-button').addEventListener('click', function() {
             return `<span class="${className}">${item.name}</span>`;
         }).join('');
     } else {
-        document.querySelector('.output').textContent = 'venti';
+        let num = 0;
+        let num2 = 0;
+        for (let i = 0; i < 10; i++) {
+            num = Math.random();
+            if (num < 0.006) {
+                num2 = Math.random();
+                if (num2 < 0.5) {
+                    result.push(banners.venti.featured.fiveStar[Math.floor(Math.random() * (banners.venti.featured.fiveStar.length - 1))]);
+                } else {
+                    result.push(banners.venti.regular.fiveStars[Math.floor(Math.random() * (banners.venti.regular.fiveStars.length - 1))]);
+                }
+            } else if (num < 0.051) {
+                num2 = Math.random();
+                if (num2 < 0.5) {
+                    result.push(banners.venti.featured.fourStars[Math.floor(Math.random() * (banners.venti.featured.fourStars.length - 1))]);
+                } else {
+                    result.push(banners.venti.regular.fourStars[Math.floor(Math.random() * (banners.venti.regular.fourStars.length - 1))]);
+                }
+            } else {
+                result.push(banners.venti.regular.threeStars[Math.floor(Math.random() * (banners.venti.regular.threeStars.length - 1))]);
+            }
+        }
+        console.log(result)
+        document.querySelector('.output').innerHTML = result.map(item => {
+            let className = '';
+            if (item.rarity == 3) {
+                className = 'rarity-3';
+            } else if (item.rarity == 4) {
+                className = 'rarity-4';
+            } else if (item.rarity == 5) {
+                className = 'rarity-5';
+            }
+            return `<span class="${className}">${item.name}</span>`;
+        }).join('');
     }
 });
