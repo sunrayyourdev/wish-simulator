@@ -1257,55 +1257,25 @@ let weapons = [
 ];
 let banners = {
     standard: {
-        fiveStars: [],
-        fourStars: [],
-        threeStars: []
+        fiveStars: characters.filter(c => c.rarity == 5 && !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name))
+                    .concat(weapons.filter(c => c.rarity == 5)),
+        fourStars: characters.filter(c => c.rarity == 4)
+                    .concat(weapons.filter(c => c.rarity == 4)),
+        threeStars: weapons.filter(c => c.rarity == 3)
     },
     venti: {
         featured: {
-            fiveStar: null,
-            fourStars: []
+            fiveStar: characters.filter(c => c.name == 'Venti'),
+            fourStars: characters.filter(c => c.rarity == 4 && ['Fischl', 'Sucrose', 'Xiangling'].includes(c.name))
         },
         regular: {
-            fiveStars: [],
-            fourStars: [],
-            threeStars: []
+            fiveStars: characters.filter(c => c.rarity == 5 && !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name)),
+            fourStars: characters.filter(c => c.rarity == 4 && !['Kaeya', 'Lisa', 'Amber', 'Fischl', 'Sucrose', 'Xiangling'].includes(c.name))
+                        .concat(weapons.filter(c => c.rarity == 4)),
+            threeStars: weapons.filter(c => c.rarity == 3)
         }
     }
 }
-
-window.addEventListener('load', function() {
-    banners.standard.fiveStars = characters.filter((c) => {
-            return c.rarity == 5 && !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name);
-        }).concat(weapons.filter((c) => {
-            return c.rarity == 5;
-        }));
-    banners.standard.fourStars = characters.filter((c) => {
-            return c.rarity == 4;
-        }).concat(weapons.filter((c) => {
-            return c.rarity == 4;
-        }));
-    banners.standard.threeStars = weapons.filter((c) => {
-            return c.rarity == 3;
-        });
-    banners.venti.featured.fiveStar = characters.filter((c) => {
-            return c.name == 'Venti';
-        });
-    banners.venti.featured.fourStars = characters.filter((c) => {
-            return c.rarity == 4 && ['Fischl', 'Sucrose', 'Xiangling'].includes(c.name);
-        });
-    banners.venti.regular.fiveStars = characters.filter((c) => {
-            return c.rarity == 5 && !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name);
-        });
-    banners.venti.regular.fourStars = characters.filter((c) => {
-            return c.rarity == 4 && !['Kaeya', 'Lisa', 'Amber', 'Fischl', 'Sucrose', 'Xiangling'].includes(c.name);
-        }).concat(weapons.filter((c) => {
-            return c.rarity == 4;
-        }));
-    banners.venti.regular.threeStars = weapons.filter((c) => {
-            return c.rarity == 3;
-        });
-});
 
 document.getElementById('wish-button').addEventListener('click', function() {
     // OK BUT WHY IS A BOOL STORED AS A STRING WTF JAVASCRIPT rant over
