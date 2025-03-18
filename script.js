@@ -1257,6 +1257,8 @@ let weapons = [
 ];
 let banners = {
     standard: {
+        pity: 0,
+        history: [],
         fiveStars: characters.filter(c => c.rarity == 5 && !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name))
                     .concat(weapons.filter(c => c.rarity == 5)),
         fourStars: characters.filter(c => c.rarity == 4)
@@ -1264,6 +1266,8 @@ let banners = {
         threeStars: weapons.filter(c => c.rarity == 3)
     },
     venti: {
+        pity: 0,
+        history: [],
         featured: {
             fiveStar: characters.filter(c => c.name == 'Venti'),
             fourStars: characters.filter(c => c.rarity == 4 && ['Fischl', 'Sucrose', 'Xiangling'].includes(c.name))
@@ -1280,17 +1284,23 @@ let banners = {
 document.getElementById('wish-button').addEventListener('click', function() {
     // OK BUT WHY IS A BOOL STORED AS A STRING WTF JAVASCRIPT rant over
     let result = [];
+    let currentBanner;
     if (document.getElementById('standard-button').ariaPressed == 'true') {
+        currentBanner = banners.standard;
         let num = 0;
         for (let i = 0; i < 10; i++) {
             num = Math.random();
+            let item;
             if (num < 0.006) {
-                result.push(banners.standard.fiveStars[Math.floor(Math.random() * (banners.standard.fiveStars.length - 1))]);
+                item = currentBanner.fiveStars[Math.floor(Math.random() * (currentBanner.fiveStars.length - 1))];
             } else if (num < 0.051) {
-                result.push(banners.standard.fourStars[Math.floor(Math.random() * (banners.standard.fourStars.length - 1))]);
+                item = currentBanner.fourStars[Math.floor(Math.random() * (currentBanner.fourStars.length - 1))];
             } else {
-                result.push(banners.standard.threeStars[Math.floor(Math.random() * (banners.standard.threeStars.length - 1))]);
+                item = currentBanner.threeStars[Math.floor(Math.random() * (currentBanner.threeStars.length - 1))];
             }
+            result.push(item);
+            currentBanner.pity++;
+            currentBanner.history.push(item);
         }
         console.log(result)
         document.querySelector('.output').innerHTML = result.map(item => {
@@ -1305,27 +1315,32 @@ document.getElementById('wish-button').addEventListener('click', function() {
             return `<span class="${className}">${item.name}</span>`;
         }).join('');
     } else {
+        currentBanner = banners.venti;
         let num = 0;
         let num2 = 0;
         for (let i = 0; i < 10; i++) {
             num = Math.random();
+            let item;
             if (num < 0.006) {
                 num2 = Math.random();
                 if (num2 < 0.5) {
-                    result.push(banners.venti.featured.fiveStar[Math.floor(Math.random() * (banners.venti.featured.fiveStar.length - 1))]);
+                    item = currentBanner.featured.fiveStar[Math.floor(Math.random() * (currentBanner.featured.fiveStar.length - 1))];
                 } else {
-                    result.push(banners.venti.regular.fiveStars[Math.floor(Math.random() * (banners.venti.regular.fiveStars.length - 1))]);
+                    item = currentBanner.regular.fiveStars[Math.floor(Math.random() * (currentBanner.regular.fiveStars.length - 1))];
                 }
             } else if (num < 0.051) {
                 num2 = Math.random();
                 if (num2 < 0.5) {
-                    result.push(banners.venti.featured.fourStars[Math.floor(Math.random() * (banners.venti.featured.fourStars.length - 1))]);
+                    item = currentBanner.featured.fourStars[Math.floor(Math.random() * (currentBanner.featured.fourStars.length - 1))];
                 } else {
-                    result.push(banners.venti.regular.fourStars[Math.floor(Math.random() * (banners.venti.regular.fourStars.length - 1))]);
+                    item = currentBanner.regular.fourStars[Math.floor(Math.random() * (currentBanner.regular.fourStars.length - 1))];
                 }
             } else {
-                result.push(banners.venti.regular.threeStars[Math.floor(Math.random() * (banners.venti.regular.threeStars.length - 1))]);
+                item = currentBanner.regular.threeStars[Math.floor(Math.random() * (currentBanner.regular.threeStars.length - 1))];
             }
+            result.push(item);
+            currentBanner.pity++;
+            currentBanner.history.push(item);
         }
         console.log(result)
         document.querySelector('.output').innerHTML = result.map(item => {
