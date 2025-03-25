@@ -1257,7 +1257,6 @@ let weapons = [
 ];
 let banners = {
     standard: {
-        pity: 0,
         history: [],
         fiveStars: characters.filter(c => c.rarity == 5 && !['Venti', 'Klee', 'Xiao', 'Tartaglia', 'Zhongli'].includes(c.name))
                     .concat(weapons.filter(c => c.rarity == 5)),
@@ -1266,7 +1265,6 @@ let banners = {
         threeStars: weapons.filter(c => c.rarity == 3)
     },
     venti: {
-        pity: 0,
         history: [],
         featured: {
             fiveStar: characters.filter(c => c.name == 'Venti'),
@@ -1282,27 +1280,29 @@ let banners = {
 }
 
 document.getElementById('wish-button').addEventListener('click', function() {
-    // OK BUT WHY IS A BOOL STORED AS A STRING WTF JAVASCRIPT rant over
     let result = [];
     let currentBanner;
     if (document.getElementById('standard-button').ariaPressed == 'true') {
         currentBanner = banners.standard;
-        let num = 0;
+        const fiveStarChance = 0.006;
+        const fourStarChance = 0.051;
         for (let i = 0; i < 10; i++) {
-            num = Math.random();
+            const roll = Math.random();
+            const recentlyFoundFive = currentBanner.history.slice(-90).some(item => item.rarity == 5);
+            const recentlyFoundFour = currentBanner.history.slice(-10).some(item => item.rarity == 4);
+            const isFive = (roll < fiveStarChance) || (currentBanner.history.length > 89 && !recentlyFoundFive);
+            const isFour = (roll < fourStarChance) || (currentBanner.history.length > 9 && !recentlyFoundFour);
             let item;
-            if (num < 0.006) {
+            if (isFive) {
                 item = currentBanner.fiveStars[Math.floor(Math.random() * (currentBanner.fiveStars.length - 1))];
-            } else if (num < 0.051) {
+            } else if (isFour) {
                 item = currentBanner.fourStars[Math.floor(Math.random() * (currentBanner.fourStars.length - 1))];
             } else {
                 item = currentBanner.threeStars[Math.floor(Math.random() * (currentBanner.threeStars.length - 1))];
             }
-            result.push(item);
-            currentBanner.pity++;
+            result.push(item); 
             currentBanner.history.push(item);
         }
-        console.log(result)
         document.querySelector('.output').innerHTML = result.map(item => {
             let className = '';
             if (item.rarity == 3) {
@@ -1314,23 +1314,37 @@ document.getElementById('wish-button').addEventListener('click', function() {
             }
             return `<span class="${className}">${item.name}</span>`;
         }).join('');
+        let guaranteeThreshold = 90;
+        let countSinceLastFive = 0;
+        for (let i = currentBanner.history.length - 1; i >= 0; i--) {
+            if (currentBanner.history[i].rarity == 5) break;
+            countSinceLastFive++;
+        }
+        console.log(currentBanner.history)
+        let wishesLeft = guaranteeThreshold - countSinceLastFive;
+        console.log(wishesLeft)
+        document.getElementById('counter').textContent = "Wishes until guaranteed 5-star: " + (wishesLeft > 0 ? wishesLeft : 0);
     } else {
         currentBanner = banners.venti;
-        let num = 0;
-        let num2 = 0;
+        const fiveStarChance = 0.006;
+        const fourStarChance = 0.051;
         for (let i = 0; i < 10; i++) {
-            num = Math.random();
+            const roll = Math.random();
+            const recentlyFoundFive = currentBanner.history.slice(-90).some(item => item.rarity == 5);
+            const recentlyFoundFour = currentBanner.history.slice(-10).some(item => item.rarity == 4);
+            const isFive = (roll < fiveStarChance) || (currentBanner.history.length > 89 && !recentlyFoundFive);
+            const isFour = (roll < fourStarChance) || (currentBanner.history.length > 9 && !recentlyFoundFour);
             let item;
-            if (num < 0.006) {
-                num2 = Math.random();
-                if (num2 < 0.5) {
+            if (isFive) {
+                const isFeatured = Math.random() < 0.5;
+                if (isFeatured) {
                     item = currentBanner.featured.fiveStar[Math.floor(Math.random() * (currentBanner.featured.fiveStar.length - 1))];
                 } else {
                     item = currentBanner.regular.fiveStars[Math.floor(Math.random() * (currentBanner.regular.fiveStars.length - 1))];
                 }
-            } else if (num < 0.051) {
-                num2 = Math.random();
-                if (num2 < 0.5) {
+            } else if (isFour) {
+                const isFeatured = Math.random() < 0.5;
+                if (isFeatured) {
                     item = currentBanner.featured.fourStars[Math.floor(Math.random() * (currentBanner.featured.fourStars.length - 1))];
                 } else {
                     item = currentBanner.regular.fourStars[Math.floor(Math.random() * (currentBanner.regular.fourStars.length - 1))];
@@ -1339,10 +1353,8 @@ document.getElementById('wish-button').addEventListener('click', function() {
                 item = currentBanner.regular.threeStars[Math.floor(Math.random() * (currentBanner.regular.threeStars.length - 1))];
             }
             result.push(item);
-            currentBanner.pity++;
             currentBanner.history.push(item);
         }
-        console.log(result)
         document.querySelector('.output').innerHTML = result.map(item => {
             let className = '';
             if (item.rarity == 3) {
@@ -1354,5 +1366,13 @@ document.getElementById('wish-button').addEventListener('click', function() {
             }
             return `<span class="${className}">${item.name}</span>`;
         }).join('');
+        let guaranteeThreshold = 90;
+        let countSinceLastFive = 0;
+        for (let i = currentBanner.history.length - 1; i >= 0; i--) {
+            if (currentBanner.history[i].rarity == 5) break;
+            countSinceLastFive++;
+        }
+        let wishesLeft = guaranteeThreshold - countSinceLastFive;
+        document.getElementById('counter').textContent = "Wishes until guaranteed 5-star: " + (wishesLeft > 0 ? wishesLeft : 0);
     }
 });
