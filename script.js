@@ -1288,10 +1288,10 @@ document.getElementById('wish-button').addEventListener('click', function() {
         const fourStarChance = 0.051;
         for (let i = 0; i < 10; i++) {
             const roll = Math.random();
-            const recentlyFoundFive = currentBanner.history.slice(-90).some(item => item.rarity == 5);
-            const recentlyFoundFour = currentBanner.history.slice(-10).some(item => item.rarity == 4);
-            const isFive = (roll < fiveStarChance) || (currentBanner.history.length > 89 && !recentlyFoundFive);
-            const isFour = (roll < fourStarChance) || (currentBanner.history.length > 9 && !recentlyFoundFour);
+            const recentlyFoundFive = currentBanner.history.slice(-89).some(item => item.rarity == 5);
+            const recentlyFoundFour = currentBanner.history.slice(-9).some(item => item.rarity == 4);
+            const isFive = (roll < fiveStarChance) || (currentBanner.history.length >= 89 && !recentlyFoundFive);
+            const isFour = (roll < fourStarChance) || (currentBanner.history.length >= 9 && !recentlyFoundFour);
             let item;
             if (isFive) {
                 item = currentBanner.fiveStars[Math.floor(Math.random() * (currentBanner.fiveStars.length - 1))];
@@ -1330,10 +1330,10 @@ document.getElementById('wish-button').addEventListener('click', function() {
         const fourStarChance = 0.051;
         for (let i = 0; i < 10; i++) {
             const roll = Math.random();
-            const recentlyFoundFive = currentBanner.history.slice(-90).some(item => item.rarity == 5);
-            const recentlyFoundFour = currentBanner.history.slice(-10).some(item => item.rarity == 4);
-            const isFive = (roll < fiveStarChance) || (currentBanner.history.length > 89 && !recentlyFoundFive);
-            const isFour = (roll < fourStarChance) || (currentBanner.history.length > 9 && !recentlyFoundFour);
+            const recentlyFoundFive = currentBanner.history.slice(-89).some(item => item.rarity == 5);
+            const recentlyFoundFour = currentBanner.history.slice(-9).some(item => item.rarity == 4);
+            const isFive = (roll < fiveStarChance) || (currentBanner.history.length >= 89 && !recentlyFoundFive);
+            const isFour = (roll < fourStarChance) || (currentBanner.history.length >= 9 && !recentlyFoundFour);
             let item;
             if (isFive) {
                 const isFeatured = Math.random() < 0.5;
